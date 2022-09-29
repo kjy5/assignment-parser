@@ -4,7 +4,6 @@ from datetime import datetime
 from tkinter import filedialog
 
 # CONFIGURATION
-START_LINE = 41
 KEYWORDS = {"Assignment", "Quiz"}
 TAGS = ["phys141"]
 YEAR = datetime.now().year
@@ -15,7 +14,6 @@ root.withdraw()
 input_filepath = filedialog.askopenfilename()
 input_file = open(input_filepath, 'r')
 input_lines = input_file.readlines()
-print(input_lines)
 
 # Create output file
 output_filepath = filedialog.asksaveasfile(mode='w', defaultextension=".md").name
