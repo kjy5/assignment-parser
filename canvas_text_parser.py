@@ -6,7 +6,8 @@ from tkinter import filedialog
 # CONFIGURATION
 START_LINE = 41
 KEYWORDS = {"Assignment", "Quiz"}
-TAGS = ["phys141", "quiz"]
+TAGS = ["phys141"]
+YEAR = datetime.now().year
 
 # Get input file
 root = tk.Tk()
@@ -26,12 +27,13 @@ assignment_state = 0
 # Parse input file
 output_lines = deque()
 current_line = deque()
-year = datetime.now().year
+add_quiz_tag = False
 for line in input_lines:
     line = line[:-1]
     if line in KEYWORDS:
         current_line = deque("-[]")
         assignment_state = 1
+        add_quiz_tag = line == "Quiz"
     elif assignment_state == 1:
         current_line.append(line.strip())
         assignment_state = 2
@@ -42,7 +44,7 @@ for line in input_lines:
         current_line.append(datetime.strptime(line_split[1], "%b").strftime("%B"))
         current_line.append(line_split[2])
         current_line.append(",")
-        current_line.append(str(year))
+        current_line.append(str(YEAR))
         current_line.append("}")
 
         # Add due time
@@ -54,6 +56,8 @@ for line in input_lines:
         # Add tags
         for tag in TAGS:
             current_line.append("#" + tag)
+        if add_quiz_tag:
+            current_line.append("#quiz")
 
         # Add line to output
         current_line.append("\n")
