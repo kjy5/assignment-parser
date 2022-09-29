@@ -9,6 +9,7 @@ TAGS = ["phys141"]
 YEAR = datetime.now().year
 
 # Get input file
+# noinspection DuplicatedCode
 root = tk.Tk()
 root.withdraw()
 input_filepath = filedialog.askopenfilename()
@@ -63,6 +64,5 @@ for line in input_lines:
         assignment_state = 0
 
 input_file.close()
-print(output_lines)
 output_file.writelines(list(output_lines))
 output_file.close()
