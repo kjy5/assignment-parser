@@ -115,6 +115,7 @@ fabric.properties
 .idea/**/azureSettings.xml
 
 ### Python ###
+.python-version
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
