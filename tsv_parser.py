@@ -38,7 +38,7 @@ for row in input_lines:
     if len(current_line[-1]) > 0:
         current_line.append("-")
     current_line.append(row[3].strip())
-    if current_line[-1][0] == "-":
+    if len(current_line[-1]) > 0 and current_line[-1][0] == "-":
         current_line[-1] = current_line[-1][1:]
 
     # Topic names
