@@ -3,7 +3,7 @@ from datetime import datetime
 
 # CONFIGURATION
 YEAR = datetime.now().year
-TAGS = ["phys142"]
+TAGS = ["phys143"]
 INPUT_FILEPATH = "data/Lecture_schedule.txt"
 OUTPUT_FILEPATH = "data/lecture_schedule.md"
 

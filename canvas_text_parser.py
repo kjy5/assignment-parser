@@ -1,11 +1,9 @@
-import tkinter as tk
 from collections import deque
 from datetime import datetime
-from tkinter import filedialog
 
 # CONFIGURATION
-KEYWORDS = {"Jan", "Feb", "Mar"}
-TAGS = ["phys142"]
+KEYWORDS = {"Mar", "Apr", "May", "Jun"}
+TAGS = ["phys143"]
 YEAR = datetime.now().year
 INPUT_FILEPATH = "data/assignments.txt"
 OUTPUT_FILEPATH = "data/assignments.md"
