@@ -52,7 +52,9 @@ for row in input_lines:
     current_line.append(datetime.strptime(row[0][-3:], "%b").strftime("%B"))
 
     # Day
-    day = int(row[0][:2])
+    day = int(row[0][:2]) - 1
+    if day < 1:
+        day = 30
 
     current_line.append(str(day))
     current_line.append(",")
