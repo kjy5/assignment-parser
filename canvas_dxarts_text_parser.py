@@ -3,6 +3,7 @@ from datetime import datetime
 
 # CONFIGURATION
 KEYWORDS = {"Page", "Discussion Topic", "Assignment", "Quiz"}
+SKIP_KEYWORDS = {": Overview", "- Advanced"}
 TAGS = ["dxarts200"]
 YEAR = datetime.now().year
 INPUT_FILEPATH = "data/assignments.txt"
@@ -23,11 +24,22 @@ for index, line in enumerate(input_lines):
     print(line)
 
     if line in KEYWORDS:
+        # Name
+        name = input_lines[index + 1].strip()
+
+        # Check if it has a skip keyword
+        should_skip = False
+        for skip in SKIP_KEYWORDS:
+            if skip in name:
+                should_skip = True
+                break
+
+        if should_skip:
+            continue
+
         # Check box
         current_line = deque("-[]")
-
-        # Name
-        current_line.append(input_lines[index + 1].strip())
+        current_line.append(name)
 
         # Date
         current_line.append("@{")
@@ -38,7 +50,9 @@ for index, line in enumerate(input_lines):
             current_line.append(",")
         else:
             lecture_line = input_lines[index + 1].strip()
-            if "1" in lecture_line:
+            if "10" in lecture_line:
+                current_line.append("June 2 ,")
+            elif "1" in lecture_line:
                 current_line.append("March 31 ,")
             elif "2" in lecture_line:
                 current_line.append("April 7 ,")
@@ -56,15 +70,13 @@ for index, line in enumerate(input_lines):
                 current_line.append("May 19 ,")
             elif "9" in lecture_line:
                 current_line.append("May 26 ,")
-            elif "10" in lecture_line:
-                current_line.append("June 2 ,")
 
         current_line.append(str(YEAR))
         current_line.append("}")
 
         # Add due time
         current_line.append("@@{")
-        current_line.append("11:59")
+        current_line.append("4:00")
         current_line.append("PM")
         current_line.append("}")
 
